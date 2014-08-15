@@ -93,7 +93,10 @@ axis(1, labels = c('0:00', '5:00', '10:00', '15:00', '20:00'), at = c(0, 500, 10
   
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 ```{r}
-max(q2$x)
+maxi<-q2
+colnames(maxi)<-c("Interval","Mean of Steps")
+maxi[maxi[,2]==max(maxi[,2]),]
+
 ```
 
 
@@ -145,7 +148,7 @@ total
 **The results show**:      
 
 1). Do these values differ from the estimates from the first part of the assignment?    
-- In comparison with the first part of this assignment, the mean and median values do not change dramatically. Only median changes from 10765 to 10766. 
+* In comparison with the first part of this assignment, the mean and median values do not change dramatically. Only median changes from 10765 to 10766. 
 
 2). What is the impact of imputing missing data on the estimates of the total daily number of steps?
 ```{r}
@@ -181,5 +184,3 @@ q4<-transform(q4,Group.2=factor(Group.2))
 xyplot(x~Group.1|Group.2,data=q4,layout=c(1,2),xlab="Interval",type="l",
             ylab="Number of steps")
 ```
-
-knit2html("PA1_template.Rmd")
