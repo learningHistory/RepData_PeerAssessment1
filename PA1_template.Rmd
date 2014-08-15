@@ -184,3 +184,7 @@ q4<-transform(q4,Group.2=factor(Group.2))
 xyplot(x~Group.1|Group.2,data=q4,layout=c(1,2),xlab="Interval",type="l",
             ylab="Number of steps")
 ```
+
+######**Output in html format**:    
+knit2html("PA1_template.Rmd")   
+
