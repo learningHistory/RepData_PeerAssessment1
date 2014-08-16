@@ -78,7 +78,7 @@ total
 ```
 It shows the mean total number of steps is `r total[,1]` and the median is `r total[,2]`.
 
-###What is the average daily activity pattern?
+### What is the average daily activity pattern?
 
 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 ```{r}
@@ -100,7 +100,7 @@ maxi
 ```
 It shows the maximum number of steps is contained in interval `r maxi$Interval` and the number of steps is `r maxi[,2]`.
 
-##Imputing missing values
+### Imputing missing values
 
 Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data.
 
@@ -161,7 +161,7 @@ summary(q31)
 - From the results above, we can see the impact of imputing missing data is only obvious on the 1st quantile and 3rd quantile. Also the lenghth of them vary because of the replacement of NA values. 
 
 
-##Are there differences in activity patterns between weekdays and weekends?
+### Are there differences in activity patterns between weekdays and weekends?
 
 For this part the weekdays() function may be of some help here. Use the dataset with the filled-in missing values for this part.
 
@@ -186,6 +186,8 @@ xyplot(x~Group.1|Group.2,data=q4,layout=c(1,2),xlab="Interval",type="l",
             ylab="Number of steps")
 ```
 
-##**Output in html format**:    
+
+
+##Output in html format:    
 knit2html("PA1_template.Rmd")   
 
