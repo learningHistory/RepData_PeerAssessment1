@@ -17,7 +17,7 @@ The data for this assignment can be downloaded from the course web site:
 
 The variables included in this dataset are:
 
-- **step**s: Number of steps taking in a 5-minute interval (missing values are coded as NA)
+- **steps**: Number of steps taking in a 5-minute interval (missing values are coded as NA)
 
 - **date**: The date on which the measurement was taken in YYYY-MM-DD format
 
@@ -30,7 +30,7 @@ The dataset is stored in a comma-separated-value (CSV) file and there are a tota
 
 - This assignment is described in multiple parts including answers to each questions below and the detailed codes processing these output.
 
-- This report is shown on [Github](https://github.com/ddhw335/RepData_PeerAssessment1).
+- This report is shown on my [Github](https://github.com/ddhw335/RepData_PeerAssessment1).
 
 - Plotting systems used: base, lattice, ggplot2
 
@@ -76,7 +76,7 @@ total<-data.frame(q12,q13)
 colnames(total)<-c("mean","median")
 total
 ```
-
+It shows the mean total number of steps is `r total[,1]` and the median is `r total[,2]`.
 
 ###What is the average daily activity pattern?
 
@@ -95,10 +95,10 @@ axis(1, labels = c('0:00', '5:00', '10:00', '15:00', '20:00'), at = c(0, 500, 10
 ```{r}
 maxi<-q2
 colnames(maxi)<-c("Interval","Mean of Steps")
-maxi[maxi[,2]==max(maxi[,2]),]
-
+maxi<-maxi[maxi[,2]==max(maxi[,2]),]
+maxi
 ```
-
+It shows the maximum number of steps is contained in interval `r maxi$Interval` and the number of steps is `r maxi[,2]`.
 
 ##Imputing missing values
 
@@ -112,7 +112,7 @@ nrow(na)
 
 2. Devise a strategy for filling in all of the missing values in the dataset. 
 
-Here, I use the mean for 5-minte interval to fill in corresponding missing values.The strategy does not need to be sophisticated. 
+Here, I use the mean for 5-minte interval to fill in corresponding missing values.
 ```{r,cache=TRUE}
 q3<-aggregate(steps[,1],
               by=list(steps$interval),
@@ -136,7 +136,7 @@ q31 <- aggregate(new.data[,1],
                  by=list(new.data$date),
                  FUN=sum)
 qplot(x,data=q31,xlab="Range of sum of steps",ylab="Count",
-      main="Total number of steps taken each day(New)")+
+      main="Total number of steps taken each day(Filled in NAs)")+
       theme_bw()
 q32<-mean(q31[,2])
 q33<-median(q31[,2])
@@ -144,6 +144,7 @@ total<-data.frame(q32,q33)
 colnames(total)<-c("mean","median")
 total
 ```
+It shows after filling in NAs, the mean total number of steps is `r total[,1]` and the median is `r total[,2]`.
 
 **The results show**:      
 
@@ -185,6 +186,6 @@ xyplot(x~Group.1|Group.2,data=q4,layout=c(1,2),xlab="Interval",type="l",
             ylab="Number of steps")
 ```
 
-######**Output in html format**:    
+##**Output in html format**:    
 knit2html("PA1_template.Rmd")   
 
